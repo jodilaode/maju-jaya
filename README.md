@@ -17,3 +17,5 @@ Solusi ini menggunakan **Medallion Architecture** untuk memastikan integritas da
 Pastikan Docker sudah terinstal, lalu jalankan:
 ```bash
 docker-compose up -d
+
+### 2. Buka jupyter notebook untuk running script nya atau running file main.py
