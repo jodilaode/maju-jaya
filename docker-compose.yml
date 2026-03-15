@@ -1,0 +1,33 @@
+services:
+  # Database Utama
+  db_mysql:
+    image: mysql:8.0
+    container_name: majujaya_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: maju_jaya
+      MYSQL_ROOT_PASSWORD: adminpassword
+    ports:
+      - "3307:3306" # Port yang digunakan untuk connect MySQL di DBeaver
+    volumes:
+      - ./sql_init:/docker-entrypoint-initdb.d
+      - mysql_data:/var/lib/mysql
+
+  # Container untuk menjalankan script Python (ETL)
+  etl_worker:
+    build: ./etl
+    container_name: majujaya_etl
+    volumes:
+      - ./etl:/app
+      - ./data:/app/data
+    environment:
+      - DB_HOST=db_mysql
+      - DB_USER=root
+      - DB_PASSWORD=adminpassword
+      - DB_NAME=maju_jaya
+    depends_on:
+      - db_mysql
+    tty: true
+
+volumes:
+  mysql_data:
