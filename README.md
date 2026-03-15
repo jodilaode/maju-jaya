@@ -19,4 +19,4 @@ Pastikan Docker sudah terinstal, lalu jalankan:
 docker-compose up -d
 
 ```
-### 2. Buka jupyter notebook untuk running script nya atau running file main.py
+### 2. Buka jupyter notebook di local untuk running script (file .ipynb) atau running file main.py
